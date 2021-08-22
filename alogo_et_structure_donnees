@@ -1,0 +1,170 @@
+Première serie d'exo
+
+TASK 1
+
+Algorithme permutation
+
+VAR
+   x,y,z : integer;
+BEGIN
+     WRITE ("Entrer le valeurs",x,y,z);
+     READ (x,y,z);
+     WRITE("x = " x, "y = " y, "z = " z);
+     x:=y, y:=z, z:=x;
+     WRITE ("les valeurs apres permutation sont :");
+     WRITE ("x = "x, "y = "y, "z = "z);
+END
+
+TASK 2
+
+ALGORITHME location_de_voiture
+
+CONST
+     r1 = 0,7; r2 = 0,4; r3 = 0,2; 
+     p_d = 100; ins = 0,3; tva = 0,18;
+VAR
+   nbr_km, cout_locajour = 0, cout_locakilo = 0: float;
+   nbr_jour : integer;
+BEGIN
+     WRITE ("Entrer le nombre de kilometre à effectuer pour une location au kilometre");
+     READ (nbr_km);
+     WRITE ("En combien de jours allez effectuer cette distance?");
+     READ (nbr_jour);
+
+    IF (nbr_km <= 100) THEN
+        cout_locakilo := ((nbr_km*r1)+(nbr_jour*ins))*0,18;
+    END IF
+    IF (nbr_km >= 101 && nbr_km <=1000) THEN
+       cout_locakilo := ((100*r1)+((nbr_km-100)*r2));
+       cout_locakilo := (cout_locakilo + (nbr_jour*ins))*0,18;
+    END IF
+    IF (nbr_km > 1000) THEN
+       cout_locakilo := ((100*r1)+(900*r2)) + ((nbr_km-100)*r3);
+       cout_locakilo := (cout_locakilo + (nbr_jour*ins))*0,18;
+    EN IF
+
+    WRITE ("Pour une location au kilometre de", nbr_km, "à effectuer en ",
+          nbr_jour,"jours le coût de la location vous revient à ", cout_locakilo);
+    
+    WRITE ("Entrer le nombre de jours pour une location au jours");
+    READ (nbr_jour);
+
+    cout_locajour := ((nbr_jour * pd)+(nbr_jour*ins)) * 0,18;
+    
+    WRITE ("Pour une location au jour de ", nbr_jour," jours le cout de la location 
+            de la location vous revient à ",cout_locajour);
+
+    IF (cout_locajour < cout_locakilo) THEN
+       WRITE ("La meilleur offre pour vous sera la location au jour");
+    ELSE 
+       WRITE ("la meilleur offre pour vous sera la location au kilometrage");
+    END IF
+
+END
+
+TASK 3
+
+ALGORITHME Date
+
+VAR
+   jour, annee, millenaire, modulo, j, m, ann : integer;
+   mois : string;
+   bissextil : boolean;
+
+BEGIN
+     WRITE ("Entrer les 2 premiers nombres");
+     READ (j);
+     WRITE ("Entrer les 2 premiers nombres");
+     READ (m);
+     WRITE ("Entrer les 2 premiers nombres");
+     READ (ann);
+     WRITE ("Entrer votre siecle de reference");
+     READ (millenaire);
+
+     annee := millenaire + ann;
+
+     IF ((annee % 400) = 0) THEN
+        bissextil := true;
+        ELSE IF ((annee % 4) = 0 && (annee % 100) != 0) THEN         
+             bissextil := true;
+        END IF
+    ELSE 
+        bissextil := false;   
+    END IF
+
+    SWITCH (m) DO
+
+           case m=01: IF (j = 00 || j > 31) THEN
+                         WRITE ("Entrer un jour valable pour le mois de janvier");
+                      ELSE 
+                          mois := janvier;
+                      BREAK;
+           case m=02 IF (bissextil = true && j != 00 && j <= 29) THEN
+                          mois := fevrier;
+                     ELSE IF (bissextil = true && j= 00 || j > 29) THEN
+                          WRITE ("Entrer un jour valable pour le mois de fevrier bissextil");
+                     ELSE IF (bissextil = false && j= 00 || j > 28) THEN
+                          WRITE ("Enter un jours valable pour le mois de fevrier non bissextil");
+                    ELSE 
+                          mois := fevrier;
+                    BREAK;
+            case m=03: IF (j = 00 || j > 31) THEN
+                         WRITE ("Entrer un jour valable pour le mois de mars");
+                      ELSE 
+                          mois := Mars;
+                    BREAK;
+            case m=04: IF (j = 00 || j > 30) THEN
+                         WRITE ("Entrer un jour valable pour le mois de avril");
+                      ELSE 
+                          mois := Avril;
+                    BREAK;
+            case m=05: IF (j = 00 || j > 31) THEN
+                         WRITE ("Entrer un jour valable pour le mois de Mai");
+                      ELSE 
+                          mois := Mai;
+                    BREAK;
+            case m=06: IF (j = 00 || j > 30) THEN
+                         WRITE ("Entrer un jour valable pour le mois de juin");
+                      ELSE 
+                          mois := Juin;
+                    BREAK;
+            case m=07: IF (j = 00 || j > 31) THEN
+                         WRITE ("Entrer un jour valable pour le mois de juillet");
+                      ELSE 
+                          mois := Juillet;
+                    BREAK;
+            case m=08: IF (j = 00 || j > 31) THEN
+                         WRITE ("Entrer un jour valable pour le mois de Aout");
+                      ELSE 
+                          mois := Aout;
+                    BREAK;
+            case m=09: IF (j = 00 || j > 30) THEN
+                         WRITE ("Entrer un jour valable pour le mois de septembre");
+                      ELSE 
+                          mois := Septembre;
+                    BREAK;
+            case m=10: IF (j = 00 || j > 31) THEN
+                         WRITE ("Entrer un jour valable pour le mois de octobre");
+                      ELSE 
+                          mois := Octobre;
+                    BREAK;
+            case m=11: IF (j = 00 || j > 30) THEN
+                         WRITE ("Entrer un jour valable pour le mois de novembre")
+                      ELSE 
+                          mois := Novembre;
+                    BREAK;
+            case m=12: IF (j = 00 || j > 31) THEN
+                         WRITE ("Entrer un jour valable pour le mois de decembre");
+                      ELSE 
+                          mois := Decembre;
+                    BREAK;
+            DEFAULT : WRITE ("Veuillez entrer une valeur valide pour le mois")
+    END SWITCH
+
+    jour := j;
+    
+    WRITE ("jour :",jour);
+    WRITE ("Mois :",mois);
+    WRITE ("Année :",annee);
+
+END
